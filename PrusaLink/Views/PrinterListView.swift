@@ -15,22 +15,29 @@ struct PrinterListView: View {
     
     var body: some View {
         NavigationSplitView {
-            if printerConnections.isEmpty {
-                ContentUnavailableView("No printers added", systemImage: "questionmark", description: Text("Add a printer connection"))
-            }
-            List {
-                ForEach(printerConnections) { connection in
-                    NavigationLink {
-                        VStack {
-                            Text(connection.ipAddress)
-                            Text(connection.apiKey)
+            Group {
+                if printerConnections.isEmpty {
+                    
+                    
+                    ContentUnavailableView("No printers added", systemImage: "questionmark", description: Text("Add a printer connection"))
+                        .debugFrame()
+                } else {
+                    List {
+                        ForEach(printerConnections) { connection in
+                            NavigationLink {
+                                VStack {
+                                    Text(connection.ipAddress)
+                                    Text(connection.apiKey)
+                                }
+                            } label: {
+                                Text(connection.name)
+                            }
                         }
-                    } label: {
-                        Text(connection.name)
+                        
                     }
                 }
-                
             }
+            .debugFrame(.blue)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {

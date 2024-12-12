@@ -208,7 +208,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 522B0C762D0B706500F481A4 /* Build configuration list for PBXProject "PrusaLink" */;
+			buildConfigurationList = 522B0C762D0B706500F481A4 /* Build configuration list for PBXProject "PrusaLive" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -559,7 +559,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		522B0C762D0B706500F481A4 /* Build configuration list for PBXProject "PrusaLink" */ = {
+		522B0C762D0B706500F481A4 /* Build configuration list for PBXProject "PrusaLive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				522B0CA52D0B706700F481A4 /* Debug */,
