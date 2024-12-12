@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct PrinterListView: View {
+    @State private var showSettingsView: Bool = false
     @Environment(\.modelContext) private var modelContext
     @Query private var printerConnections: [PrinterConnection]
     
@@ -38,10 +39,20 @@ struct PrinterListView: View {
                         Image(systemName: "plus")
                     }
                 }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        self.showSettingsView.toggle()
+                    } label: {
+                        Image(systemName: "switch.2")
+                    }
+                }
             }
             .navigationTitle("Printers")
         } detail: {
             Text("Select an item")
+        }
+        .sheet(isPresented: $showSettingsView) {
+            SettingsView()
         }
         
     }

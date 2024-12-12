@@ -1,0 +1,24 @@
+{
+  "originHash" : "8fd2e8ae5445179b937052605068bd15d7a0aabb88b18f00c34081e7d5a9a7d2",
+  "pins" : [
+    {
+      "identity" : "behnkefoundation",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:JohnBehnke/BehnkeFoundation.git",
+      "state" : {
+        "revision" : "59c8713eeb951f8f30861c5d3d71621910e9b7c5",
+        "version" : "2.2.1"
+      }
+    },
+    {
+      "identity" : "flannel",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:JohnBehnke/Flannel.git",
+      "state" : {
+        "revision" : "ec1b222ab81f85e852011bafc25bcc4e237aeed8",
+        "version" : "0.1.1"
+      }
+    }
+  ],
+  "version" : 3
+}
