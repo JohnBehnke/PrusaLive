@@ -11,9 +11,12 @@ import SwiftData
 struct PrinterListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var printerConnections: [PrinterConnection]
-
+    
     var body: some View {
         NavigationSplitView {
+            if printerConnections.isEmpty {
+                ContentUnavailableView("No printers added", systemImage: "questionmark", description: Text("Add a printer connection"))
+            }
             List {
                 ForEach(printerConnections) { connection in
                     NavigationLink {
@@ -25,23 +28,24 @@ struct PrinterListView: View {
                         Text(connection.name)
                     }
                 }
-
+                
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    Button {
+                        addItem()
+                    } label: {
+                        Image(systemName: "plus")
                     }
                 }
             }
+            .navigationTitle("Printers")
         } detail: {
             Text("Select an item")
         }
+        
     }
-
+    
     private func addItem() {
         withAnimation {
             let newConnection = PrinterConnection(
@@ -52,7 +56,7 @@ struct PrinterListView: View {
             modelContext.insert(newConnection)
         }
     }
-
+    
 }
 
 #Preview {
