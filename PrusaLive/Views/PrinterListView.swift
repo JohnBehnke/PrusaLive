@@ -1,6 +1,6 @@
 //
 //  PrinterListView.swift
-//  PrusaLink
+//  PrusaLive
 //
 //  Created by John Behnke on 12/12/24.
 //
@@ -17,10 +17,7 @@ struct PrinterListView: View {
         NavigationSplitView {
             Group {
                 if printerConnections.isEmpty {
-                    
-                    
                     ContentUnavailableView("No printers added", systemImage: "questionmark", description: Text("Add a printer connection"))
-                        .debugFrame()
                 } else {
                     List {
                         ForEach(printerConnections) { connection in
@@ -37,7 +34,6 @@ struct PrinterListView: View {
                     }
                 }
             }
-            .debugFrame(.blue)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {

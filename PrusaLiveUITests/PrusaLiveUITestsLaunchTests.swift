@@ -1,13 +1,13 @@
 //
-//  PrusaLinkUITestsLaunchTests.swift
-//  PrusaLinkUITests
+//  PrusaLiveUITestsLaunchTests.swift
+//  PrusaLiveUITests
 //
 //  Created by John Behnke on 12/12/24.
 //
 
 import XCTest
 
-final class PrusaLinkUITestsLaunchTests: XCTestCase {
+final class PrusaLiveUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

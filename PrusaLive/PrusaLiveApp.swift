@@ -1,6 +1,6 @@
 //
-//  PrusaLinkApp.swift
-//  PrusaLink
+//  PrusaLiveApp.swift
+//  PrusaLive
 //
 //  Created by John Behnke on 12/12/24.
 //
@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct PrusaLinkApp: App {
+struct PrusaLiveApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             PrinterConnection.self,

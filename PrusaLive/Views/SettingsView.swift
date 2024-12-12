@@ -1,6 +1,6 @@
 //
 //  SettingsView.swift
-//  PrusaLink
+//  PrusaLive
 //
 //  Created by John Behnke on 12/12/24.
 //

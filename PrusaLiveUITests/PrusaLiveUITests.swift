@@ -1,13 +1,13 @@
 //
-//  PrusaLinkUITests.swift
-//  PrusaLinkUITests
+//  PrusaLiveUITests.swift
+//  PrusaLiveUITests
 //
 //  Created by John Behnke on 12/12/24.
 //
 
 import XCTest
 
-final class PrusaLinkUITests: XCTestCase {
+final class PrusaLiveUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
