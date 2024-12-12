@@ -10,6 +10,7 @@ import SwiftData
 
 struct PrinterListView: View {
     @State private var showSettingsView: Bool = false
+    @State private var showAddPrinterConnectionView: Bool = false
     @Environment(\.modelContext) private var modelContext
     @Query private var printerConnections: [PrinterConnection]
     
@@ -17,7 +18,37 @@ struct PrinterListView: View {
         NavigationSplitView {
             Group {
                 if printerConnections.isEmpty {
-                    ContentUnavailableView("No printers added", systemImage: "questionmark", description: Text("Add a printer connection"))
+                    VStack {
+                        ContentUnavailableView {
+                            // 1
+                            Label("No Printers", systemImage: "questionmark.square")
+                            
+                        } description: {
+                            Text("Add a printer connection via PrusaLink")
+                        } actions: {
+                            // 2
+                            Button {
+                                addPrinter()
+                            } label: {
+                                Text("Add Printer")
+                                    .padding()
+                                    .bold()
+                                    .foregroundStyle(.white)
+                            }
+                            .padding(.horizontal, 50)
+
+                            .background(
+                                RoundedRectangle(
+                                    cornerRadius: 20,
+                                    style: .continuous
+                                )
+                                .fill(Color.orange.gradient)
+
+                                
+                            )
+                        }
+                        
+                    }
                 } else {
                     List {
                         ForEach(printerConnections) { connection in
@@ -35,11 +66,13 @@ struct PrinterListView: View {
                 }
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        addItem()
-                    } label: {
-                        Image(systemName: "plus")
+                if !printerConnections.isEmpty {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            addPrinter()
+                        } label: {
+                            Image(systemName: "plus")
+                        }
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -57,18 +90,14 @@ struct PrinterListView: View {
         .sheet(isPresented: $showSettingsView) {
             SettingsView()
         }
+        .sheet(isPresented: $showAddPrinterConnectionView) {
+            AddPrinterConnectionView()
+        }
         
     }
     
-    private func addItem() {
-        withAnimation {
-            let newConnection = PrinterConnection(
-                name: "New Item",
-                ipAddress: "192.168.1.1",
-                apiKey: "abc123"
-            )
-            modelContext.insert(newConnection)
-        }
+    private func addPrinter() {
+        showAddPrinterConnectionView.toggle()
     }
     
 }
