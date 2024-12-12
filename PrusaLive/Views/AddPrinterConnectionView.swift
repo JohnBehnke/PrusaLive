@@ -33,7 +33,7 @@ struct AddPrinterConnectionView: View {
             }
             
             Section("API Key") {
-                SecureField("", text: $printerAPIKey)
+                SecureField("onlyiamaprusa", text: $printerAPIKey)
             }
             Section("Type") {
                 Picker("", selection: $printerType) {
@@ -60,7 +60,7 @@ struct AddPrinterConnectionView: View {
             .listRowBackground(Color.orange.opacity(isAddButtonDisabled ? 0.5 : 1))
             
         }
-        .navigationTitle("Add Printer")
+        
         .toolbar {
             ToolbarItem(placement: .automatic) {
                 Button {
@@ -70,7 +70,7 @@ struct AddPrinterConnectionView: View {
                 }
             }
         }
-        
+        .navigationTitle("Add Printer")
     }
     
     var isAddButtonDisabled: Bool {

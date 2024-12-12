@@ -18,7 +18,7 @@ struct PrinterListView: View {
         NavigationSplitView {
             Group {
                 if printerConnections.isEmpty {
-                    VStack {
+                    
                         ContentUnavailableView {
                             // 1
                             Label("No Printers", systemImage: "questionmark.square")
@@ -47,21 +47,35 @@ struct PrinterListView: View {
                                 
                             )
                         }
-                        
-                    }
+                        .padding(.bottom, 50)
+                            
+                    
                 } else {
                     List {
-                        ForEach(printerConnections) { connection in
-                            NavigationLink {
-                                VStack {
-                                    Text(connection.ipAddress)
-                                    Text(connection.apiKey)
+                        Section("Online") {
+                            ForEach(printerConnections) { connection in
+                                NavigationLink {
+                                    VStack {
+                                        Text(connection.ipAddress)
+                                        Text(connection.apiKey)
+                                    }
+                                } label: {
+                                    Text(connection.name)
                                 }
-                            } label: {
-                                Text(connection.name)
                             }
                         }
-                        
+                        Section("Offline") {
+                            ForEach(printerConnections) { connection in
+                                NavigationLink {
+                                    VStack {
+                                        Text(connection.ipAddress)
+                                        Text(connection.apiKey)
+                                    }
+                                } label: {
+                                    Text(connection.name)
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -102,7 +116,25 @@ struct PrinterListView: View {
     
 }
 
-#Preview {
+#Preview("Empty View") {
     PrinterListView()
         .modelContainer(for: PrinterConnection.self, inMemory: true)
+}
+
+
+#Preview("Sample Data View") {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(
+        for: PrinterConnection.self,
+        configurations: config
+    )
+    
+    
+    
+    for sampleConnection in PrinterConnection.samplePrinterConnections {
+        container.mainContext.insert(sampleConnection)
+    }
+    
+    return PrinterListView()
+        .modelContainer(container)
 }
