@@ -30,39 +30,32 @@ extension PrinterConnection {
     static var samplePrinterConnections: [PrinterConnection] {
         [
             PrinterConnection(
-                name: "Prusa 3D Mini",
+                name: "Mini Me",
                 ipAddress: "192.168.1.1",
                 username: "prusa3d1",
                 apiKey: "prusa3d11",
                 type: .mini
             ),
             PrinterConnection(
-                name: "Prusa 3D XL",
+                name: "The Big Boy",
                 ipAddress: "192.168.1.2",
                 username: "prusa3d2",
                 apiKey: "prusa3d22",
                 type: .xl
             ),
             PrinterConnection(
-                name: "Prusa 3D MK4S",
+                name: "The 4S",
                 ipAddress: "192.168.1.3",
                 username: "prusa3d4",
                 apiKey: "prusa3d33",
                 type: .mk4s
             ),
             PrinterConnection(
-                name: "Prusa 3D MK2.5S",
+                name: "Oldy But Goody",
                 ipAddress: "192.168.1.4",
                 username: "prusa3d4",
                 apiKey: "prusa3d44",
                 type: .mk25s
-            ),
-            PrinterConnection(
-                name: "Prusa 3D Mini+",
-                ipAddress: "192.168.1.5",
-                username: "prusa3d5",
-                apiKey: "prusa3d55",
-                type: .miniplus
             )
         ]
     }

@@ -60,7 +60,7 @@ struct PrinterListView: View {
                                         Text(connection.apiKey)
                                     }
                                 } label: {
-                                    Text(connection.name)
+                                    printerCellView(connection: connection)
                                 }
                             }
                         }
@@ -110,9 +110,43 @@ struct PrinterListView: View {
         
     }
     
+    private func printerCellView(connection: PrinterConnection) -> some View {
+        VStack(alignment: .leading) {
+            Text(connection.name)
+                .font(.headline)
+            
+            HStack {
+                Text(connection.type.formattedName)
+                    .font(.caption2)
+                    .bold()
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 5)
+                    .padding(.vertical, 3)
+                    .background(
+                        RoundedRectangle(cornerRadius: 4)
+                            .fill(Color.orange.gradient)
+                    )
+                Text("IDLE")
+                    .bold()
+                    .font(.caption2)
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 5)
+                    .padding(.vertical, 3)
+                    .background(
+                        RoundedRectangle(cornerRadius: 4)
+                            .fill(Color.purple.gradient)
+                    )
+                
+            }
+            
+        }
+    }
+    
     private func addPrinter() {
         showAddPrinterConnectionView.toggle()
     }
+    
+    
     
 }
 
