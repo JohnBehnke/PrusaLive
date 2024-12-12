@@ -25,7 +25,7 @@ struct PrusaLinkApp: App {
 
     var body: some Scene {
         WindowGroup {
-            PrinterListView()
+            RootView()
         }
         .modelContainer(sharedModelContainer)
     }
