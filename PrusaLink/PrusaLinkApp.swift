@@ -12,7 +12,7 @@ import SwiftData
 struct PrusaLinkApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            PrinterConnection.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +25,7 @@ struct PrusaLinkApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PrinterListView()
         }
         .modelContainer(sharedModelContainer)
     }

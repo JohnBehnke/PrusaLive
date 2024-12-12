@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  PrinterListView.swift
 //  PrusaLink
 //
 //  Created by John Behnke on 12/12/24.
@@ -8,21 +8,24 @@
 import SwiftUI
 import SwiftData
 
-struct ContentView: View {
+struct PrinterListView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query private var printerConnections: [PrinterConnection]
 
     var body: some View {
         NavigationSplitView {
             List {
-                ForEach(items) { item in
+                ForEach(printerConnections) { connection in
                     NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                        VStack {
+                            Text(connection.ipAddress)
+                            Text(connection.apiKey)
+                        }
                     } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                        Text(connection.name)
                     }
                 }
-                .onDelete(perform: deleteItems)
+
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -41,21 +44,18 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+            let newConnection = PrinterConnection(
+                name: "New Item",
+                ipAddress: "192.168.1.1",
+                apiKey: "abc123"
+            )
+            modelContext.insert(newConnection)
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
-    }
 }
 
 #Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+    PrinterListView()
+        .modelContainer(for: PrinterConnection.self, inMemory: true)
 }
